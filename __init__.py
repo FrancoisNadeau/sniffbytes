@@ -3,6 +3,7 @@
 # __init__.py
 
 from .bytes2df import bytes2df
+from .bytes2json import bytes2json
 from .clean_bytes import clean_bytes
 from .evenodd import evenodd
 from .fix_dup_index import fix_dup_index

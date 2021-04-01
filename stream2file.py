@@ -1,6 +1,7 @@
 #!usr/bin/env/python3
 
 import os
+from typing import Union
 
 def stream2file(
     inpt: Union[bytes, bytearray, str, os.PathLike, object],

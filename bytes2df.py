@@ -4,7 +4,9 @@ import os
 from unidecode import unidecode
 from io import BytesIO
 from typing import Union
-from load_utils.evenodd import evenodd
+import pandas as pd
+from pandas import DataFrame as df
+from .evenodd import evenodd
 from .get_bytes import get_bytes
 from .get_delimiter import get_delimiter
 from .has_dpi import has_dpi
@@ -38,25 +40,14 @@ def bytes2df(
     dup_index: True if 'inpt' has duplicated index values, else False.
     lineterminator: Bytes representation in native file encoding
                     of the line termination character."""
-    return [
-        df(
-            (
-                line.split()
-                for line in unidecode(clean_bytes(inpt, **kwargs).decode()).splitlines()
-            ),
-            dtype=object,
-        )
-        .T.set_index(0, drop=True)
-        .T
-        if [has_header if has_header is not None else get_has_header(inpt)][0]
-        else df(
-            (
-                line.split()
-                for line in unidecode(clean_bytes(inpt, **kwargs).decode()).splitlines()
-            ),
-            dtype=object,
-        )
-    ][0]
+    has_header = has_hdr(inpt, encoding, has_header)
+    return [df((line.split() for line in unidecode(
+               clean_bytes(inpt, **kwargs).decode()).splitlines()),
+               dtype=object).T.set_index(0, drop=True).T
+            if has_header
+            else df((line.split() for line in unidecode(
+                     clean_bytes(inpt, **kwargs).decode()).splitlines()),
+                    dtype=object)][0]
 
 def main():
     if __name__ == __main__:

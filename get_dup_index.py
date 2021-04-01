@@ -2,6 +2,7 @@
 
 import os
 from typing import Union
+import pandas as pd
 from .evenodd import evenodd
 from .get_bytes import get_bytes
 from .has_enc import has_enc

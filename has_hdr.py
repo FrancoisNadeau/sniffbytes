@@ -13,5 +13,5 @@ def has_hdr(
 
 def main():
     if __name__ == __main__:
-        has_hdr(inpt, has_header, encoding)
+        has_hdr(inpt, encoding, has_header)
 
