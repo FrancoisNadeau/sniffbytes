@@ -3,7 +3,7 @@
 ### Bytes manipulation functions to repair datas and find dialect
 ### where CSV.Sniffer() can't
 
-#### Requires Python3
+#### Requires Python>3.5
 
 #### Installing requirements
 
