@@ -4,7 +4,7 @@ import os
 from io import BytesIO
 from typing import Union
 import pandas as pd
-from load_utils.evenodd import evenodd
+from .evenodd import evenodd
 from .get_bytes import get_bytes
 from .get_delimiter import get_delimiter
 from .has_dpi import has_dpi

@@ -2,10 +2,12 @@ build
 chardet
 jupyter
 jupyterhub
-#git+https://github.com/coleifer/pysqlite3.git
+#git+https://github.com/coleifer/pysqlite3.git@master#egg=pysqlite3
 notebook
 numpy
 pandas
+pysql2
+pysql3
 regex
 wheel
 unidecode

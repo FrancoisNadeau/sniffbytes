@@ -4,7 +4,7 @@ import os
 from typing import Union
 import pandas as pd
 from pandas import DataFrame as df
-from load_utils.evenodd import evenodd
+from .evenodd import evenodd
 from .get_bytes import get_bytes
 from .get_delimiter import get_delimiter
 from .has_enc import has_enc
