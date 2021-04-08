@@ -1,7 +1,0 @@
-README.md
-pyproject.toml
-setup.py
-sniffbytes_francois.nadeau.1.egg-info/PKG-INFO
-sniffbytes_francois.nadeau.1.egg-info/SOURCES.txt
-sniffbytes_francois.nadeau.1.egg-info/dependency_links.txt
-sniffbytes_francois.nadeau.1.egg-info/top_level.txt
