@@ -37,7 +37,11 @@ def get_bencod(
             inpt.decode("UTF-8")
             return "UTF-8"
         except UnicodeEncodeError:
-            return result
+            try:
+                inpt.decode("ISO-8859-1")
+                return "ISO-8859-1"
+            except UnicodeEncodeError:
+                return result
     else:
         return result
 
