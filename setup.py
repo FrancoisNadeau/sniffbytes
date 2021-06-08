@@ -4,7 +4,7 @@ import setuptools
 from setuptools import setup
 
 setup(
-    name='sniffbytes-francois.nadeau.1',
+    name='sniffbytes',
     version='0.0.1',
     author='francois',
     author_email='francois.nadeau.1@umontreal.ca',
