@@ -5,7 +5,7 @@ from setuptools import setup
 
 setup(
     name='sniffbytes',
-    version='0.0.1',
+    version='0',
     author='francois',
     author_email='francois.nadeau.1@umontreal.ca',
     description='Python3 data parsing and cleaning module',
