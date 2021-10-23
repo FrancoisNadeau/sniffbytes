@@ -32,18 +32,19 @@ def get_bencod(
         break
     detector.close()
     result = detector.result["encoding"]
-    if result == 'ascii':
-        try:
-            inpt.decode("UTF-8")
-            return "UTF-8"
-        except UnicodeEncodeError:
-            try:
-                inpt.decode("ISO-8859-1")
-                return "ISO-8859-1"
-            except UnicodeEncodeError:
-                return result
-    else:
-        return result
+    return result
+#     if result == 'ascii':
+#         try:
+#             inpt.decode("UTF-8")
+#             return "UTF-8"
+#         except UnicodeEncodeError:
+#             try:
+#                 inpt.decode("ISO-8859-1")
+#                 return "ISO-8859-1"
+#             except UnicodeEncodeError:
+#                 return result
+#     else:
+#         return result
 
 def main():
     if __name__ == __main__:
