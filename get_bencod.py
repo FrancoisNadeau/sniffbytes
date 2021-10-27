@@ -42,8 +42,8 @@ def get_bencod(
             break
         except StopIteration:
             break
-    result = tuple(Counter(chardet.detect(line)['encoding'] for line in
-                           inpt.splitlines(keepends=True)).most_common(1))[0]
+    result = tuple(dict(Counter(chardet.detect(line)['encoding'] for line in
+                           inpt.splitlines(keepends=True)).most_common(1)).keys())[0]
     return result
 #     if result == 'ascii':
 #         try:
