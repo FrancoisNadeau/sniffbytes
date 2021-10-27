@@ -35,9 +35,10 @@ def get_bencod(
                 continue
             else:
                 break
-            break
+#             break
             detector.close()
             result = detector.result["encoding"]
+            break
         except StopIteration:
             break
     result = Counter(chardet.detect(line)['encoding'] for line
