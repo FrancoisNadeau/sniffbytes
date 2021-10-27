@@ -21,9 +21,9 @@ def check_delims(
     return  Counter(
                 pd.Series(pd.Series(pd.Series(
                     next(
-                        (regex.sub(bytes("@", encoding).join(
+                        (regex.sub(bytes("|", encoding).join(
                         map(regex.escape, itm[1])),
-                                    bytes("@", encoding),
+                                    bytes("|", encoding),
                                     itm[0])
                           for itm in
                           tuple(zip(inpt.splitlines(),
@@ -36,7 +36,7 @@ def check_delims(
                                              bytes("\n", encoding))])))
                         )).unique().max().split(
                     bytes("\\", encoding))).unique()[0].split(
-                        bytes("@", encoding))[1:],
+                        bytes("|", encoding))[1:],
                           dtype="object").unique()
                     ).most_common(1).__iter__()
 
