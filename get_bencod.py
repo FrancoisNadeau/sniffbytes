@@ -1,5 +1,6 @@
 #!usr/bin/env/python3
 
+import chardet
 import os
 from collections import Counter
 from typing import Union
