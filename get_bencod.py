@@ -51,15 +51,15 @@ def get_bencod(
     if result == 'ascii':
         try:
             inpt.decode(result)
-        except UnicodeEncodeError:
+        except UnicodeDecodeError:
             try:
                 result = "UTF-8"
                 inpt.decode(result)
-            except UnicodeEncodeError:
+            except UnicodeDecodeError:
                 try:
                     result = "ISO-8859-1"
                     inpt.decode(result)
-                except UnicodeEncodeError:
+                except UnicodeDecodeError:
                     result = "Latin-1"
     return result
   
