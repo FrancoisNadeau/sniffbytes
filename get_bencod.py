@@ -28,6 +28,10 @@ def get_bencod(
     while True:
         try:
             next(feeder)
+        except StopIteration:
+            result = tuple(dict(Counter(chardet.detect(line)['encoding'] for line in
+                       inpt.splitlines(keepends=True)).most_common(1)).keys())[0]
+            break
             if not all(criteria):
 #         if bool(not detector.done and not detector.result
 #                 and detector.result["confidence"] > 0.75
@@ -40,10 +44,10 @@ def get_bencod(
             detector.close()
             result = detector.result["encoding"]
             break
-        except StopIteration:
-            result = tuple(dict(Counter(chardet.detect(line)['encoding'] for line in
-                       inpt.splitlines(keepends=True)).most_common(1)).keys())[0]
-            break
+#         except StopIteration:
+#             result = tuple(dict(Counter(chardet.detect(line)['encoding'] for line in
+#                        inpt.splitlines(keepends=True)).most_common(1)).keys())[0]
+#             break
     if result == 'ascii':
         try:
             inpt.decode(result)
