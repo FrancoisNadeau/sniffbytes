@@ -3,6 +3,7 @@
 import os
 from collections import Counter
 import regex
+import string
 from typing import Union
 import pandas as pd
 from sniffbytes.get_bytes import get_bytes
@@ -16,6 +17,7 @@ def check_delims(
     """ Returns a generator to speed-up get_delimiter function """
     inpt = get_bytes(inpt)
     encoding = has_enc(inpt, encoding)
+    inpt = string.capwords(inpt.decode(encoding)).encode(encoding)
     return  Counter(
                 pd.Series(pd.Series(pd.Series(
                     next(
