@@ -62,7 +62,7 @@ def get_delimiter(
     encoding: Character encoding of the bytes in buffer"""
     inpt = get_bytes(inpt)
     encoding = has_enc(inpt, encoding)
-    delimiters = next(check_delims(inpt, encoding))
+    delimiters = tuple(check_delims(inpt, encoding))
     try:
         return [b" " if bool(delimiters[0] == b"" and b" ")
                 else delimiters[0]][0]
