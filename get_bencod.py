@@ -20,12 +20,14 @@ def get_bencod(
     detector.reset()
     while True:
         next((detector.feed(line) for line in inpt.splitlines()))
-        if (
-            not detector.done
-            and not detector.result
-            and detector.result["confidence"] > 0.75
-            and detector.result["encoding"] is not None
-        ):
+        criteria = (detector.done, hasattr(detector, 'result'),
+                    detector.result["confidence"] > 0.75,
+                    detector.result["encoding"] is not None)
+        if not all(criteria):
+#         if bool(not detector.done and not detector.result
+#                 and detector.result["confidence"] > 0.75
+#                 and detector.result["encoding"] is not None
+#         ):
             continue
         else:
             break
