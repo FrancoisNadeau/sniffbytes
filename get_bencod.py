@@ -18,11 +18,13 @@ def get_bencod(
     inpt = get_bytes(inpt)
     detector = udet()
     detector.reset()
+    feeder = (detector.feed(line) for
+              line in inpt.splitlines(keepends=True))
+    criteria = (detector.done, hasattr(detector, 'result'),
+                detector.result["confidence"] > 0.75,
+                detector.result["encoding"] is not None)
     while True:
-        next((detector.feed(line) for line in inpt.splitlines()))
-        criteria = (detector.done, hasattr(detector, 'result'),
-                    detector.result["confidence"] > 0.75,
-                    detector.result["encoding"] is not None)
+        next(feeder)
         if not all(criteria):
 #         if bool(not detector.done and not detector.result
 #                 and detector.result["confidence"] > 0.75
