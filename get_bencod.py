@@ -4,7 +4,7 @@ import os
 from collections import Counter
 from typing import Union
 from chardet import UniversalDetector as udet
-from get_bytes import get_bytes
+from sniffbytes.get_bytes import get_bytes
 
 def get_bencod(
     inpt: Union[bytes, bytearray, str, os.PathLike, object]
