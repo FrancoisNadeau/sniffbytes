@@ -1,9 +1,10 @@
 #!usr/bin/env/python3
 
 import os
+from collections import Counter
 from typing import Union
 from chardet import UniversalDetector as udet
-from sniffbytes.get_bytes import get_bytes
+from get_bytes import get_bytes
 
 def get_bencod(
     inpt: Union[bytes, bytearray, str, os.PathLike, object]
@@ -24,18 +25,23 @@ def get_bencod(
                 detector.result["confidence"] > 0.75,
                 detector.result["encoding"] is not None)
     while True:
-        next(feeder)
-        if not all(criteria):
+        try:
+            next(feeder)
+            if not all(criteria):
 #         if bool(not detector.done and not detector.result
 #                 and detector.result["confidence"] > 0.75
 #                 and detector.result["encoding"] is not None
 #         ):
-            continue
-        else:
+                continue
+            else:
+                break
             break
-        break
-    detector.close()
-    result = detector.result["encoding"]
+        detector.close()
+        result = detector.result["encoding"]
+        except StopIteration:
+            break
+    result = Counter(chardet.detect(line)['encoding'] for line
+                     in inpt.splitlines(keepends=True)).most_common(1)
     return result
 #     if result == 'ascii':
 #         try:
