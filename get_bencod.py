@@ -44,19 +44,22 @@ def get_bencod(
             break
     result = tuple(dict(Counter(chardet.detect(line)['encoding'] for line in
                            inpt.splitlines(keepends=True)).most_common(1)).keys())[0]
+#     return result
+    if result == 'ascii':
+        try:
+            inpt.decode(result)
+        except UnicodeEncodeError:
+            try:
+                result = "UTF-8"
+                inpt.decode(result)
+            except UnicodeEncodeError:
+                try:
+                    result = "ISO-8859-1"
+                    inpt.decode(result)
+                except UnicodeEncodeError:
+                    result = "Latin-1"
     return result
-#     if result == 'ascii':
-#         try:
-#             inpt.decode("UTF-8")
-#             return "UTF-8"
-#         except UnicodeEncodeError:
-#             try:
-#                 inpt.decode("ISO-8859-1")
-#                 return "ISO-8859-1"
-#             except UnicodeEncodeError:
-#                 return result
-#     else:
-#         return result
+  
 
 def main():
     if __name__ == __main__:
