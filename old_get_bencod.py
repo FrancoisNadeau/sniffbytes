@@ -6,6 +6,21 @@ from collections import Counter
 from typing import Union
 from chardet import UniversalDetector as udet
 from sniffbytes.get_bytes import get_bytes
+import sys
+
+def def_enc(inpt: Union[bytes, bytearray, str, os.PathLike, object]) -> str:
+    inpt = get_bytes(inpt)
+    try: inpt.decode(sys.getdefaultencoding())
+        return sys.getdefaultencoding()
+    except UnicodeDecodeError:
+        break
+
+def get_most_common_enc(inpt: Union[bytes, bytearray, str, os.PathLike, object]) -> str:
+    inpt = get_bytes(inpt)
+    result = tuple(dict(Counter(chardet.detect(line)['encoding'] for line in
+                                inpt.splitlines(keepends=True)).most_common(1)).keys())[0]
+    return result
+
 
 def get_bencod(
     inpt: Union[bytes, bytearray, str, os.PathLike, object]
